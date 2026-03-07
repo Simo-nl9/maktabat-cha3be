@@ -70,12 +70,32 @@
         }
         
         .hero-section{
-            background: linear-gradient(rgba(20,15,10,0.85), rgba(20,15,10,0.85)), url("libraryv1.jpg");
-            background-size: cover;
-            background-position: center;
-            padding: 80px 0;
-            color: white;
-            text-align: center;
+          background: linear-gradient(rgba(20,15,10,0.75), rgba(20,15,10,0.75)), url("photos/library.jpg");
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          text-align: center;
+          padding: 40px 20px;
+        }
+        
+        @media (max-width: 768px){
+          .hero-section{
+            min-height: 80vh;
+            padding: 30px 15px;
+          }
+        
+          .hero-section h1{
+            font-size: 2rem;
+          }
+        
+          .hero-section p{
+            font-size: 1rem;
+          }
         }
         
         .page-hero {
@@ -272,24 +292,32 @@
         }
         
         .cta-section {
-            background: linear-gradient(rgba(20,15,10,0.85), rgba(20,15,10,0.85)), url("libraryv1.jpg");
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 80px 0;
-            margin: 80px 0;
+          background: linear-gradient(rgba(20,15,10,0.75), rgba(20,15,10,0.75)), url("photos/library.jpg");
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          text-align: center;
+          padding: 40px 20px;
         }
+
+        @media (max-width: 768px){
+          .cta-section{
+            min-height: 80vh;
+            padding: 30px 15px;
+          }
         
-        .cta-section h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
+          .cta-section h2{
+            font-size: 2rem;
+          }
         
-        .cta-section p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin-bottom: 2rem;
+          .cta-section p{
+            font-size: 1rem;
+          }
         }
         
         .footer {
@@ -850,5 +878,6 @@
 </body>
 
 </html>
+
 
 
