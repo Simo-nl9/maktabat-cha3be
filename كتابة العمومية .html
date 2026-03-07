@@ -79,21 +79,40 @@
         }
         
         .page-hero {
-            background: linear-gradient(rgba(13, 110, 253, 0.9), rgba(13, 110, 253, 0.8)), url('https://images.unsplash.com/photo-1621967299229-c6f5a8466bb4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 80px 0;
-            text-align: center;
+          background: linear-gradient(rgba(20,15,10,0.75), rgba(20,15,10,0.75)), url("libraryv1.jpg");
+          background-size: cover;
+          background-position: center;
+          max-height: 70vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          text-align: center;
+          padding: 80px 20px;
+        }
+
+        @media (max-width: 768px){
+          .page-hero{
+            min-height: 30vh;
+            padding: 30px 15px;
+          }
+        
+          .page-hero h1{
+            font-size: 2rem;
+          }
+        
+          .page-hero p{
+            font-size: 1rem;
+          }
         }
         
-        .hero-section h1, .page-hero h1 {
+        .hero-section h1 {
             font-size: 3.5rem;
             font-weight: 700;
             margin-bottom: 1.5rem;
         }
         
-        .hero-section p, .page-hero p {
+        .hero-section p {
             font-size: 1.2rem;
             max-width: 700px;
             margin: 0 auto 2rem;
@@ -637,4 +656,5 @@
 </body>
 
 </html>
+
 
