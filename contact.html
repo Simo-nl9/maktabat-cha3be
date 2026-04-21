@@ -1,467 +1,543 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>اتصل بنا - مكتبة الشعب</title>
     <link rel="icon" type="image/jpg" href="Logo.jpg">
+    <!-- Bootstrap 5 + Icons + Fonts -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-blue: #0d6efd;
-            --dark-blue: #0b5ed7;
-            --light-blue: #e8f4ff;
-            --dark-gray: #333;
-            --medium-gray: #666;
-            --light-gray: #f8f9fa;
+            --primary: #2c7da0;
+            --primary-dark: #1f5e7a;
+            --primary-light: #e2f0f5;
+            --accent: #f4a261;
+            --accent-dark: #e76f51;
+            --dark: #2d3e50;
+            --gray: #6c757d;
+            --light-bg: #fefcf5;
+            --card-shadow: 0 20px 35px -12px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
         }
         
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            color: var(--dark-gray);
-            line-height: 1.6;
+            font-family: 'Cairo', 'Inter', sans-serif;
+            color: #1e2a3e;
+            background-color: var(--light-bg);
+            line-height: 1.7;
+            scroll-behavior: smooth;
         }
         
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+        
+        /* Top Bar */
         .top-bar {
-            background-color: var(--light-blue);
+            background-color: #f8f4ea;
             padding: 10px 0;
             font-size: 0.9rem;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
-        
         .top-bar a {
-            color: var(--medium-gray);
+            color: var(--gray);
             text-decoration: none;
+            transition: var(--transition);
         }
+        .top-bar a:hover { color: var(--primary); }
         
-        .top-bar a:hover {
-            color: var(--primary-blue);
-        }
-        
+        /* Navbar */
         .navbar {
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            padding: 1rem 0;
+            background: rgba(255,255,255,0.96) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
         }
-        
+        .navbar.scrolled {
+            padding: 0.6rem 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
         .navbar-brand {
-            font-weight: 700;
+            font-weight: 800;
             font-size: 1.8rem;
-            color: var(--primary-blue);
+            color: var(--primary) !important;
+            letter-spacing: -0.5px;
         }
-        
         .nav-link {
-            font-weight: 500;
-            padding: 0.5rem 1rem !important;
+            font-weight: 600;
+            color: var(--dark) !important;
+            margin: 0 4px;
+            transition: var(--transition);
+            position: relative;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary) !important;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
         }
         
-        .nav-link.active {
-            color: var(--primary-blue) !important;
-        }
-        
+        /* Page Hero */
         .page-hero {
-          background: linear-gradient(rgba(20,15,10,0.75), rgba(20,15,10,0.75)), url("libraryv1.jpg");
-          background-size: cover;
-          background-position: center;
-          max-height: 70vh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: white;
-          text-align: center;
-          padding: 80px 20px;
-        }
-
-        @media (max-width: 768px){
-          .page-hero{
-            min-height: 30vh;
-            padding: 30px 15px;
-          }
-        
-          .page-hero h1{
-            font-size: 2rem;
-          }
-        
-          .page-hero p{
-            font-size: 1rem;
-          }
-        }
-        
-        .contact-section {
-            padding: 80px 0;
-        }
-        
-        .contact-info-card {
-            background-color: var(--light-blue);
-            border-radius: 15px;
-            padding: 40px;
-            height: 100%;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 30px;
-            padding: 20px;
-            background-color: white;
-            border-radius: 10px;
-            transition: transform 0.3s;
-        }
-        
-        .contact-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        
-        .contact-icon {
-            width: 60px;
-            height: 60px;
-            background-color: var(--primary-blue);
+            background: linear-gradient(135deg, rgba(20,15,10,0.85), rgba(20,15,10,0.85)), url("libraryv1.jpg");
+            background-size: cover;
+            background-position: center;
             color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        .page-hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        .page-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+        
+        /* Back button */
+        .back-to-services {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            border-radius: 40px;
+            background: white;
+            color: var(--primary);
+            border: 1px solid rgba(0,0,0,0.1);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            margin-bottom: 30px;
+        }
+        .back-to-services:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateX(-4px);
+        }
+        
+        /* Contact Cards */
+        .contact-card {
+            background: white;
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            height: 100%;
+            text-align: center;
+        }
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 40px -12px rgba(0,0,0,0.15);
+        }
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--primary-light);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            margin-left: 20px;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin: 0 auto 1.2rem;
+            transition: var(--transition);
         }
-        
-        .contact-details h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: var(--dark-gray);
-        }
-        
-        .contact-details p, .contact-details a {
-            font-size: 1.1rem;
-            color: var(--medium-gray);
-            text-decoration: none;
-            margin: 0;
-        }
-        
-        .contact-details a:hover {
-            color: var(--primary-blue);
-        }
-        
-        .contact-form {
-            background-color: white;
-            border-radius: 15px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        
-        .contact-form h2 {
-            font-weight: 700;
-            margin-bottom: 30px;
-            color: var(--primary-blue);
-        }
-        
-        .form-control, .form-select {
-            border-radius: 10px;
-            padding: 12px 15px;
-            border: 1px solid #e0e0e0;
-            margin-bottom: 20px;
-        }
-        
-        .form-control:focus, .form-select:focus {
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
-        }
-        
-        .btn-submit {
-            background-color: var(--primary-blue);
+        .contact-card:hover .contact-icon {
+            background: var(--primary);
             color: white;
-            border: none;
-            border-radius: 50px;
-            padding: 15px 40px;
-            font-weight: 600;
-            width: 100%;
-            transition: background-color 0.3s;
+        }
+        .contact-card h5 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        .contact-card a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .contact-card a:hover {
+            color: var(--primary);
         }
         
-        .btn-submit:hover {
-            background-color: var(--dark-blue);
-        }
-        
-        .business-hours {
-            background-color: white;
-            border-radius: 10px;
-            padding: 25px;
+        /* Business Hours Card */
+        .hours-card {
+            background: white;
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
             margin-top: 30px;
         }
-        
-        .business-hours h4 {
-            color: var(--primary-blue);
-            margin-bottom: 20px;
-            font-weight: 600;
+        .hours-card h4 {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.2rem;
         }
-        
         .hours-item {
             display: flex;
             justify-content: space-between;
             padding: 10px 0;
             border-bottom: 1px solid #eee;
         }
-        
         .hours-item:last-child {
             border-bottom: none;
         }
-        
         .hours-day {
             font-weight: 600;
+            color: var(--dark);
         }
-        
         .hours-time {
-            color: var(--medium-gray);
+            color: var(--gray);
         }
         
-        .map-container {
-            margin-top: 50px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        /* Social Icons */
+        .social-icons {
+            margin-top: 1rem;
+        }
+        .social-icons a {
+            display: inline-flex;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            margin: 0 6px;
+            color: var(--primary);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        .social-icons a:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
         }
         
+        /* Footer */
         .footer {
             background-color: #664a35;
             color: #aaa;
             padding: 70px 0 30px;
+            margin-top: 60px;
         }
-        
         .footer h5 {
             color: white;
             font-weight: 700;
             margin-bottom: 1.5rem;
             font-size: 1.2rem;
         }
-        
         .footer-links {
             list-style: none;
-            padding-left: 0;
+            padding: 0;
         }
-        
         .footer-links li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
-        
         .footer-links a {
             color: #aaa;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: var(--transition);
         }
-        
         .footer-links a:hover {
             color: white;
+            padding-right: 5px;
         }
-        
-        .social-icons a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255,255,255,0.1);
+        .social-icons-footer a {
+            display: inline-flex;
+            width: 38px;
+            height: 38px;
+            background: rgba(255,255,255,0.1);
             border-radius: 50%;
-            text-align: center;
-            line-height: 40px;
-            margin-right: 10px;
+            align-items: center;
+            justify-content: center;
+            margin-left: 8px;
             color: white;
-            transition: background-color 0.3s;
+            transition: var(--transition);
         }
-        
-        .social-icons a:hover {
-            background-color: var(--primary-blue);
+        .social-icons-footer a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
         }
-        
         .copyright {
             border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 20px;
-            margin-top: 50px;
+            padding-top: 25px;
+            margin-top: 40px;
             text-align: center;
-            font-size: 0.9rem;
-            color: #888;
+            font-size: 0.85rem;
+        }
+        
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: #25D366;
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 4px 15px rgba(37,211,102,0.4);
+            z-index: 100;
+            transition: var(--transition);
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            color: white;
+        }
+        
+        /* Back to top */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 45px;
+            height: 45px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 99;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-to-top:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
         }
         
         @media (max-width: 768px) {
-            .page-hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .contact-section {
-                padding: 50px 0;
-            }
-            
-            .contact-info-card, .contact-form {
-                padding: 25px;
-            }
+            .page-hero h1 { font-size: 2rem; }
+            .page-hero { padding: 60px 0; }
+            .contact-card { padding: 20px; }
         }
     </style>
 </head>
 <body>
-    <!-- Top Bar -->
-    <div class="top-bar d-none d-md-block">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=samihoussam35@gmail.com" target="_blank">
-                        <i class="fas fa-envelope me-2"></i>samihoussam35@gmail.com
-                    </a>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <a href="tel:0754201815">
-                        <i class="fas fa-phone me-2"></i>(+212) 754201815
-                    </a>
-                </div>
+
+<!-- Floating WhatsApp Button -->
+<a href="https://wa.me/212754201815" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- Back to Top Button -->
+<div class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+</div>
+
+<!-- Top Bar -->
+<div class="top-bar d-none d-md-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=samihoussam35@gmail.com" target="_blank">
+                    <i class="fas fa-envelope me-2"></i>samihoussam35@gmail.com
+                </a>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <a href="tel:0754201815"><i class="fas fa-phone me-2"></i>(+212) 754201815</a>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">مكتبة الشعب</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">الرئيسية</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">من نحن</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">اتصل بنا</a>
-                    </li>
-                </ul>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg sticky-top" id="navbar">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">📚 مكتبة الشعب</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">الرئيسية</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">من نحن</a></li>
+                <li class="nav-item"><a class="nav-link active" href="contact.html">اتصل بنا</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Page Hero -->
+<section class="page-hero">
+    <div class="container">
+        <h1>اتصل بنا</h1>
+        <p>نحن هنا لمساعدتك في أي وقت. تواصل معنا وسنكون سعداء بخدمتك</p>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="py-5">
+    <div class="container">
+        <a href="index.html" class="back-to-services">
+            <i class="fas fa-arrow-right me-2"></i> العودة إلى الخدمات
+        </a>
+        
+        <div class="row g-4">
+            <!-- Phone Card -->
+            <div class="col-md-4">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h5>الهاتف</h5>
+                    <a href="https://wa.me/212754201815" class="d-block">(+212) 754201815</a>
+                    <p class="text-muted small mt-2">متاح على مدار الساعة</p>
+                </div>
+            </div>
+            
+            <!-- Email Card -->
+            <div class="col-md-4">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h5>البريد الإلكتروني</h5>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=samihoussam35@gmail.com" target="_blank">samihoussam35@gmail.com</a>
+                    <p class="text-muted small mt-2">نرد خلال 24 ساعة</p>
+                </div>
+            </div>
+            
+            <!-- Location Card -->
+            <div class="col-md-4">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h5>العنوان</h5>
+                    <p class="mb-0">Kenitra - Saknia</p>
+                    <p class="text-muted small mt-2">المغرب</p>
+                </div>
             </div>
         </div>
-    </nav>
-
-    <!-- Page Hero -->
-    <section class="page-hero">
-        <div class="container">
-            <h1>اتصل بنا</h1>
-            <p>نحن هنا لمساعدتك في أي وقت. تواصل معنا وسنكون سعداء بخدمتك</p>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact-section">
-        <div class="container">
-                <a href="index.html" class="btn btn-outline-primary back-to-services mb-4">
-                   <i class="fas fa-arrow-left me-2"></i>العودة إلى الخدمات
-                </a>
-            <div class="row">
-                <div class="col-lg-12 mb-6 mb-lg-0">
-                    <div class="contact-info-card">
-                        <h2 class="mb-4" style="color: var(--primary-blue);">معلومات الاتصال</h2>
-                        <p class="mb-4">لا تتردد في التواصل معنا لأي استفسار أو مساعدة. نحن هنا لخدمتك على مدار الساعة.</p>
-                        
-                        <!-- Phone -->
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone-alt"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h3>الهاتف</h3>
-                                <a href="https://wa.me/212754201815">(+212) 754201815</a>
-                                <p>متاح على مدار الساعة</p>
+        
+        <!-- Business Hours & Social Media -->
+        <div class="row mt-4">
+            <div class="col-md-8 mx-auto">
+                <div class="hours-card">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <h4><i class="fas fa-clock me-2"></i> ساعات العمل</h4>
+                            <div class="hours-item">
+                                <span class="hours-day">الإثنين - الأحد</span>
+                                <span class="hours-time">11:00 صباحاً - 8:00 ليلاً</span>
                             </div>
                         </div>
-                        
-                        <!-- Email -->
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h3>البريد الإلكتروني</h3>
-                                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=samihoussam35@gmail.com" target="_blank">samihoussam35@gmail.com</a>
-                                <p>نرد خلال 24 ساعة</p>
-                            </div>
-                        </div>
-                        
-                        <!-- Location -->
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h3>العنوان</h3>
-                                <p>Kenitra - Saknia</p>
-                            </div>
-                        </div>
-                        
-                        <!-- Social Media -->
-                        <div class="mt-4">
-                            <h4 class="mb-3">تابعنا على</h4>
+                        <div class="col-md-6 text-md-center mt-3 mt-md-0">
+                            <h4><i class="fas fa-share-alt me-2"></i> تابعنا على</h4>
                             <div class="social-icons">
                                 <a href="https://www.instagram.com/maktabat_cha3b" target="_blank"><i class="fab fa-instagram"></i></a>
                                 <a href="https://wa.me/212754201815" target="_blank"><i class="fab fa-whatsapp"></i></a>
                             </div>
                         </div>
-                        
-                        <!-- Business Hours -->
-                        <div class="business-hours">
-                            <h4>ساعات العمل</h4>
-                            <div class="hours-item">
-                                <span class="hours-day">الإثنين - الأحد</span>
-                                <span class="hours-time"> 11:00 - صباحاً - 8:00 / ليلا </span>
-                            </div>
-                        </div>
                     </div>
                 </div>
-                
-                
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 mb-5 mb-lg-0">
-                    <h5>مكتبة الشعب</h5>
-                    <p class="mb-4">إذا كنت ترغب في التسجيل أو تحتاج أي مساعدة، يمكنك التواصل معنا مباشرة عبر الموقع وسنكون سعداء بخدمتك.</p>
-                    <div class="social-icons">
-                        <a href="https://www.instagram.com/maktabat_cha3b" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/0754201815" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-                
-                <div class="col-lg-2 col-md-6 mb-5 mb-md-0">
-                    <h5>روابط سريعة</h5>
-                    <ul class="footer-links">
-                        <li><a href="index.html">الرئيسية</a></li>
-                        <li><a href="about.html">من نحن</a></li>
-                        <li><a href="contact.html">اتصل بنا</a></li>
-                    </ul>
-                </div>
-                
-                <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
-                    <h5>معلومات الاتصال</h5>
-                    <ul class="footer-links">
-                        <li><a href="tel:+212754201815"><i class="fas fa-phone me-2"></i> (+212) 754201815</a></li>
-                        <li><a href="mailto:samihoussam35@gmail.com"><i class="fas fa-envelope me-2"></i> samihoussam35@gmail.com</a></li>
-                    </ul>
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <h5>📖 مكتبة الشعب</h5>
+                <p>إذا كنت ترغب في التسجيل أو تحتاج أي مساعدة، يمكنك التواصل معنا مباشرة عبر الموقع وسنكون سعداء بخدمتك.</p>
+                <div class="social-icons-footer">
+                    <a href="https://www.instagram.com/maktabat_cha3b" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/212754201815" target="_blank"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
-            
-            <div class="copyright">
-                <p>Copyright © مكتبة الشعب | Designed by Oussama - 2026</p>
+            <div class="col-lg-2 col-md-6 mb-4">
+                <h5>روابط سريعة</h5>
+                <ul class="footer-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="about.html">من نحن</a></li>
+                    <li><a href="contact.html">اتصل بنا</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h5>معلومات الاتصال</h5>
+                <ul class="footer-links">
+                    <li><a href="tel:+212754201815"><i class="fas fa-phone me-2"></i> (+212) 754201815</a></li>
+                    <li><a href="mailto:samihoussam35@gmail.com"><i class="fas fa-envelope me-2"></i> samihoussam35@gmail.com</a></li>
+                    <li><i class="fas fa-map-marker-alt me-2"></i>Kenitra - Saknia</li>
+                </ul>
             </div>
         </div>
-    </footer>
+        <div class="copyright">
+            <p>Copyright © مكتبة الشعب | Designed by Oussama - 2026</p>
+        </div>
+    </div>
+</footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+        const navbar = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+        
+        // Back to top button
+        const backBtn = document.getElementById('backToTop');
+        if (window.scrollY > 300) {
+            backBtn.classList.add('show');
+        } else {
+            backBtn.classList.remove('show');
+        }
+    });
+    
+    // Back to top click
+    document.getElementById('backToTop').addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    // Active nav link highlight based on current page
+    const currentPage = window.location.pathname.split('/').pop();
+    document.querySelectorAll('.nav-link').forEach(link => {
+        if (link.getAttribute('href') === currentPage) {
+            link.classList.add('active');
+        }
+    });
+</script>
 </body>
-
 </html>
-
-
-
-
-
-
-
